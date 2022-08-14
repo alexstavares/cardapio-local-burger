@@ -45,9 +45,22 @@ section h2 {
 ul li {
     margin-bottom: 16px;
     display: flex; 
+    margin-left: 10px;
 }
 
-li .details {
+.details {
     max-width: 240px;
+
+}
+
+.description {
+    font-size: 12px;
+}
+
+.anexos {
+    max-height: 100px;
+    max-width: 100px;
+    margin-right: 5px;
+    margin-left: -10px;
 }
 
