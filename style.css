@@ -155,6 +155,10 @@ li:nth-child(9){
     animation-delay: .8s;
 }
 
+li:nth-child(10){
+    animation-delay: .9s;
+}
+
 
 
 @keyframes fromLeft {
