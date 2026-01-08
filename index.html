@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LocalBurger - Hambúrgueres Artesanais</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header com animação de entrada -->
+    <header class="header">
+        <div class="container">
+            <div class="logo-container">
+                <h1 class="logo">LocalBurger</h1>
+                <p class="tagline">Hambúrgueres Artesanais de Verdade</p>
+            </div>
+            <nav class="nav">
+                <a href="#lanches" class="nav-link">Lanches</a>
+                <a href="#smash" class="nav-link">Ultra Smash</a>
+                <a href="#porcoes" class="nav-link">Porções</a>
+                <a href="#kids" class="nav-link">Kids</a>
+                <a href="#bebidas" class="nav-link">Bebidas</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section com Imagem de Praia -->
+    <section class="hero">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=80" alt="Praia" class="hero-bg">
+        <div class="hero-glass-overlay"></div>
+        <div class="hero-content">
+            <h2 class="hero-title">Local Burger</h2>
+            <p class="hero-subtitle">Hambúrgueres artesanais feitos com ingredientes selecionados</p>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="stat-value">+10</span>
+                    <span class="stat-label">Opções de lanches</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="stat-value">100%</span>
+                    <span class="stat-label">Artesanal</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="stat-value">Rápido</span>
+                    <span class="stat-label">Delivery</span>
+                </div>
+            </div>
+            <div class="hero-info">
+                <div class="info-item">
+                    <span class="info-icon">🕐</span>
+                    <span>Ter-Dom: 18h-23h</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-icon">📍</span>
+                    <span>São Sebastião - SP</span>
+                </div>
+            </div>
+            <a href="#lanches" class="btn-scroll">
+                <span>Ver Cardápio</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 10l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Menu Section - Hambúrguer Artesanal -->
+    <section id="lanches" class="menu-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Hambúrguer Artesanal</h2>
+                <p class="section-subtitle">Hambúrguer artesanal de fraldinha 160g</p>
+            </div>
+            <div class="menu-grid" id="menuLanches">
+                <div class="loading-menu">Carregando cardápio...</div>
+            </div>
+            <!-- Produtos estáticos removidos - agora carregam da API -->
+            <div class="menu-grid-static" style="display:none">
+                <div class="menu-card" data-category="lanche">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400" alt="Local Burger">
+                        <div class="card-badge">Clássico</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Local Burger</h3>
+                        <p class="card-description">Hambúrguer artesanal de fraldinha 160g e queijo prato e maionese defumada da casa</p>
+                        <div class="card-footer">
+                            <span class="card-price">R$ 30,00</span>
+                            <button class="btn-order">Adicionar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-category="lanche">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?w=400" alt="Local Salada">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Local Salada</h3>
+                        <p class="card-description">Hambúrguer artesanal de fraldinha 160g, queijo prato, alface lisa e tomate e maionese defumada da casa</p>
+                        <div class="card-footer">
+                            <span class="card-price">R$ 36,00</span>
+                            <button class="btn-order">Adicionar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-category="lanche">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=400" alt="Local Egg">
+                        <div class="card-badge">Popular</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Local Egg</h3>
+                        <p class="card-description">Hambúrguer artesanal de fraldinha 160g, queijo prato, ovo, alface lisa e tomate e maionese defumada da casa</p>
+                        <div class="card-footer">
+                            <span class="card-price">R$ 38,00</span>
+                            <button class="btn-order">Adicionar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-category="lanche">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=400" alt="Local Cheddar e Bacon">
+                        <div class="card-badge">Premium</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Local Cheddar e Bacon</h3>
+                        <p class="card-description">Hambúrguer artesanal 160g de fraldinha, cheddar cremoso, bacon rústico e cebola caramelizada e maionese defumada da casa</p>
+                        <div class="card-footer">
+                            <span class="card-price">R$ 42,00</span>
+                            <button class="btn-order">Adicionar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-category="lanche">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=400" alt="Local Provolone">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Local Provolone</h3>
+                        <p class="card-description">Hambúrguer artesanal de fraldinha 160g, queijo provolone, cebola roxa, picles e maionese defumada da casa</p>
+                        <div class="card-footer">
+                            <span class="card-price">R$ 42,00</span>
+                            <button class="btn-order">Adicionar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-category="lanche">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=400" alt="Local Gorgonzola">
+                        <div class="card-badge">Premium</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Local Gorgonzola</h3>
+                        <p class="card-description">Hambúrguer artesanal 160g, creme de gorgonzola, bacon rústico, cebola roxa, alface lisa e tomate e maionese defumada da casa</p>
+                        <div class="card-footer">
+                            <span class="card-price">R$ 46,00</span>
+                            <button class="btn-order">Adicionar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-category="lanche">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=400" alt="Local Bacon Salada">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Local Bacon Salada</h3>
+                        <p class="card-description">Hambúrguer artesanal de fraldinha 160g, queijo prato, bacon rústico, alface lisa e tomate e maionese defumada da casa</p>
+                        <div class="card-footer">
+                            <span class="card-price">R$ 42,00</span>
+                            <button class="btn-order">Adicionar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-category="lanche">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1520072959219-c595dc870360?w=400" alt="Local Veggie">
+                        <div class="card-badge">Vegano</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Local Veggie (Vegano)</h3>
+                        <p class="card-description">Hambúrguer do futuro 4.0, cebola roxa, picles, alface, rúcula e tomate e maionese defumada da casa</p>
+                        <div class="card-footer">
+                            <span class="card-price">R$ 40,00</span>
+                            <button class="btn-order">Adicionar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-category="lanche">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1571091655789-405eb7a3a3a8?w=400" alt="Local Big">
+                        <div class="card-badge">Novo</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Local Big (Novo)</h3>
+                        <p class="card-description">02 hambúrguer artesanal de fraldinha 160g, dobro queijo prato, dobro bacon rústico, ovo, catupiry, picles, alface lisa, cebola roxa e tomate</p>
+                        <div class="card-footer">
+                            <span class="card-price">R$ 54,00</span>
+                            <button class="btn-order">Adicionar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-category="lanche">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=400" alt="Local Chicken Catupiry">
+                        <div class="card-badge">Novo</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Local Chicken Catupiry (Novo)</h3>
+                        <p class="card-description">Peito de frango empanado na farinha panko, queijo prato, catupiry, molho sweet chilli, alface lisa e tomate</p>
+                        <div class="card-footer">
+                            <span class="card-price">R$ 40,00</span>
+                            <button class="btn-order">Adicionar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div><!-- fecha menu-grid-static -->
+        </div>
+    </section>
+
+    <!-- Ultra Smash Section -->
+    <section id="smash" class="menu-section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Ultra Smash</h2>
+                <p class="section-subtitle">Pão brioche tostado na manteiga com 2 ultra smash 40g cada</p>
+            </div>
+            <div class="menu-grid" id="menuSmash">
+                <div class="loading-menu">Carregando...</div>
+            </div>
+            <div class="menu-grid-static" style="display:none">
+                <div class="menu-card" data-category="smash">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400" alt="Ultra Smash Burger">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Ultra Smash (Burger)</h3>
+                        <p class="card-description">Pão brioche tostado na manteiga, 2 ultra smash 40g cada cobertos com american cheese e maionese defumada da casa</p>
+                        <div class="card-footer">
+                            <span class="card-price">R$ 24,99</span>
+                            <button class="btn-order">Adicionar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-category="smash">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?w=400" alt="Ultra Smash Original">
+                        <div class="card-badge">Popular</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Ultra Smash (Original)</h3>
+                        <p class="card-description">Pão brioche tostado na manteiga, 2 ultra smash 40g cada cobertos com american cheese, cebola picadinha, picles, ketchup e mostarda e maionese defumada da casa</p>
+                        <div class="card-footer">
+                            <span class="card-price">R$ 26,99</span>
+                            <button class="btn-order">Adicionar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-category="smash">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=400" alt="Ultra Smash Salada">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Ultra Smash (Salada)</h3>
+                        <p class="card-description">Pão brioche tostado na manteiga, 2 ultra smash 40g cada cobertos com american cheese, cebola picadinha, alface e tomate e maionese defumada da casa</p>
+                        <div class="card-footer">
+                            <span class="card-price">R$ 28,99</span>
+                            <button class="btn-order">Adicionar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-category="smash">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=400" alt="Ultra Smash Bacon">
+                        <div class="card-badge">Premium</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Ultra Smash (Bacon)</h3>
+                        <p class="card-description">Pão brioche tostado na manteiga, 2 ultra smash 40g cada cobertos com american cheese e bacon rústico e maionese defumada da casa</p>
+                        <div class="card-footer">
+                            <span class="card-price">R$ 32,99</span>
+                            <button class="btn-order">Adicionar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div><!-- fecha menu-grid-static smash -->
+        </div>
+    </section>
+
+    <!-- Porções Section -->
+    <section id="porcoes" class="menu-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Porções</h2>
+                <p class="section-subtitle">Acompanhamentos deliciosos</p>
+            </div>
+            <div class="menu-grid" id="menuPorcoes">
+                <div class="loading-menu">Carregando...</div>
+            </div>
+            <div class="menu-grid-static" style="display:none">
+                <div class="menu-card" data-category="porcao">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=400" alt="Batata Frita Pequena">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Batata Frita Pequena</h3>
+                        <p class="card-description">Porção individual de batatas fritas crocantes</p>
+                        <div class="card-footer">
+                            <span class="card-price">R$ 20,00</span>
+                            <button class="btn-order">Adicionar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-category="porcao">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1639024471283-03518883512d?w=400" alt="Batata Frita Grande">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Batata Frita Grande</h3>
+                        <p class="card-description">Porção generosa de batatas fritas crocantes</p>
+                        <div class="card-footer">
+                            <span class="card-price">R$ 36,00</span>
+                            <button class="btn-order">Adicionar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-category="porcao">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1621939514649-280e2ee25f60?w=400" alt="Batata Frita Pequena com Cheddar e Bacon">
+                        <div class="card-badge">Popular</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Batata Frita P com Cheddar e Bacon</h3>
+                        <p class="card-description">Batatas crocantes com cheddar cremoso e bacon</p>
+                        <div class="card-footer">
+                            <span class="card-price">R$ 32,00</span>
+                            <button class="btn-order">Adicionar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-category="porcao">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1585238341710-4c2f89fce991?w=400" alt="Batata Frita Grande com Cheddar e Bacon">
+                        <div class="card-badge">Premium</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Batata Frita G com Cheddar e Bacon</h3>
+                        <p class="card-description">Porção grande com cheddar cremoso e muito bacon</p>
+                        <div class="card-footer">
+                            <span class="card-price">R$ 48,00</span>
+                            <button class="btn-order">Adicionar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div><!-- fecha menu-grid-static porcoes -->
+        </div>
+    </section>
+
+    <!-- Local Kids Section -->
+    <section id="kids" class="menu-section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Local Kids</h2>
+                <p class="section-subtitle">Para os pequenos</p>
+            </div>
+            <div class="menu-grid" id="menuKids">
+                <div class="loading-menu">Carregando...</div>
+            </div>
+            <div class="menu-grid-static" style="display:none">
+                <div class="menu-card" data-category="kids">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1561758033-d89a9ad46330?w=400" alt="Local Kids">
+                        <div class="card-badge">Kids</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Local Kids</h3>
+                        <p class="card-description">Hambúrguer artesanal de fraldinha 80g e queijo prato, acompanha batata frita, suco ou refri + 1 pokebola com personagem do pokemon dentro colecionável</p>
+                        <div class="card-footer">
+                            <span class="card-price">R$ 42,00</span>
+                            <button class="btn-order">Adicionar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div><!-- fecha menu-grid-static kids -->
+        </div>
+    </section>
+
+    <!-- Bebidas Section -->
+    <section id="bebidas" class="menu-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Bebidas</h2>
+                <p class="section-subtitle">Para acompanhar seu lanche</p>
+            </div>
+            <div class="menu-grid bebidas-grid" id="menuBebidas">
+                <div class="loading-menu">Carregando...</div>
+            </div>
+            <div class="menu-grid-static bebidas-grid" style="display:none">
+                <div class="menu-card" data-category="bebida">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=400" alt="Coca Cola">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Coca Cola Lata 350ml</h3>
+                        <p class="card-description">Refrigerante Coca Cola lata gelada</p>
+                        <div class="card-footer">
+                            <span class="card-price">R$ 8,00</span>
+                            <button class="btn-order">Adicionar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-category="bebida">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=400" alt="Guaraná">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Guaraná Lata 350ml</h3>
+                        <p class="card-description">Refrigerante Guaraná lata gelada</p>
+                        <div class="card-footer">
+                            <span class="card-price">R$ 8,00</span>
+                            <button class="btn-order">Adicionar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-category="bebida">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=400" alt="Coca Cola Zero">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Coca Cola Zero Lata 350ml</h3>
+                        <p class="card-description">Refrigerante Coca Cola Zero lata gelada</p>
+                        <div class="card-footer">
+                            <span class="card-price">R$ 8,00</span>
+                            <button class="btn-order">Adicionar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-category="bebida">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=400" alt="Suco Uva">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Suco Uva Lata 290ml</h3>
+                        <p class="card-description">Suco Del Valle de uva lata</p>
+                        <div class="card-footer">
+                            <span class="card-price">R$ 8,00</span>
+                            <button class="btn-order">Adicionar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-category="bebida">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=400" alt="Água">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Água 510ml</h3>
+                        <p class="card-description">Água mineral 510ml</p>
+                        <div class="card-footer">
+                            <span class="card-price">R$ 5,00</span>
+                            <button class="btn-order">Adicionar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div><!-- fecha menu-grid-static bebidas -->
+        </div>
+    </section>
+
+    <!-- Footer com informações completas -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>LocalBurger</h3>
+                    <p>Hambúrgueres artesanais que conquistam pelo sabor</p>
+                    <p class="whatsapp-cta">Clique para falar conosco pelo WhatsApp</p>
+                    <a href="https://wa.me/5512982837333" target="_blank" class="footer-whatsapp">
+                        <span class="whatsapp-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                            </svg>
+                        </span>
+                        (12) 98283-7333
+                    </a>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Horário de Funcionamento</h4>
+                    <div class="horarios">
+                        <p><span>Segunda:</span> <span class="closed">Fechado</span></p>
+                        <p><span>Terça:</span> 18:00 - 23:00</p>
+                        <p><span>Quarta:</span> 18:00 - 23:00</p>
+                        <p><span>Quinta:</span> 18:00 - 23:00</p>
+                        <p><span>Sexta:</span> 18:00 - 23:00</p>
+                        <p><span>Sábado:</span> 18:00 - 23:00</p>
+                        <p><span>Domingo:</span> 18:00 - 23:00</p>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Formas de Pagamento</h4>
+                    <div class="payment-methods">
+                        <span class="payment-badge">Dinheiro</span>
+                        <span class="payment-badge">Visa Crédito</span>
+                        <span class="payment-badge">Visa Débito</span>
+                        <span class="payment-badge">MasterCard Crédito</span>
+                        <span class="payment-badge">MasterCard Débito</span>
+                        <span class="payment-badge">Elo Crédito</span>
+                        <span class="payment-badge">Elo Débito</span>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Localização</h4>
+                    <p class="endereco">
+                        📍 Avenida Doutor Altino Arantes, 220<br>
+                        Centro - São Sebastião
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 LocalBurger - Todos os direitos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botão flutuante do Carrinho -->
+    <button class="cart-float" id="cartFloat" title="Ver Carrinho">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 22C9.55228 22 10 21.5523 10 21C10 20.4477 9.55228 20 9 20C8.44772 20 8 20.4477 8 21C8 21.5523 8.44772 22 9 22Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M20 22C20.5523 22 21 21.5523 21 21C21 20.4477 20.5523 20 20 20C19.4477 20 19 20.4477 19 21C19 21.5523 19.4477 22 20 22Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M1 1H5L7.68 14.39C7.77144 14.8504 8.02191 15.264 8.38755 15.5583C8.75318 15.8526 9.2107 16.009 9.68 16H19.4C19.8693 16.009 20.3268 15.8526 20.6925 15.5583C21.0581 15.264 21.3086 14.8504 21.4 14.39L23 6H6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="cart-count" id="cartCount">0</span>
+    </button>
+
+    <!-- Modal do Carrinho -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-modal-content">
+            <div class="cart-header">
+                <h2>Seu Pedido</h2>
+                <button class="cart-close" id="cartClose">&times;</button>
+            </div>
+            <div class="cart-body">
+                <div class="cart-items" id="cartItems">
+                    <!-- Itens do carrinho serão inseridos aqui -->
+                </div>
+                <div class="cart-empty" id="cartEmpty">
+                    <p>Seu carrinho está vazio</p>
+                    <span>Adicione itens do cardápio</span>
+                </div>
+
+                <!-- Opções de Sachês -->
+                <div class="cart-section cart-sachets" id="cartSachets">
+                    <h4>Deseja sachês?</h4>
+                    <div class="sachets-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="sachetKetchup">
+                            <span class="checkmark"></span>
+                            Ketchup
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="sachetMostarda">
+                            <span class="checkmark"></span>
+                            Mostarda
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Endereço de Entrega -->
+                <div class="cart-section cart-address" id="cartAddress">
+                    <h4>Endereço de Entrega</h4>
+                    <div class="address-form">
+                        <div class="form-row">
+                            <div class="form-group cep-group">
+                                <label for="addressCep">CEP</label>
+                                <div class="cep-input-wrapper">
+                                    <input type="text" id="addressCep" placeholder="00000-000" maxlength="9">
+                                    <button type="button" id="btnSearchCep" class="btn-search-cep">Buscar</button>
+                                </div>
+                                <span class="cep-loading" id="cepLoading">Buscando...</span>
+                                <span class="cep-error" id="cepError"></span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group flex-3">
+                                <label for="addressStreet">Rua</label>
+                                <input type="text" id="addressStreet" placeholder="Nome da rua">
+                            </div>
+                            <div class="form-group flex-1">
+                                <label for="addressNumber">Número</label>
+                                <input type="text" id="addressNumber" placeholder="Nº">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="addressComplement">Complemento</label>
+                                <input type="text" id="addressComplement" placeholder="Apto, Bloco, etc. (opcional)">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="addressNeighborhood">Bairro</label>
+                                <input type="text" id="addressNeighborhood" placeholder="Bairro">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group flex-3">
+                                <label for="addressCity">Cidade</label>
+                                <input type="text" id="addressCity" placeholder="Cidade">
+                            </div>
+                            <div class="form-group flex-1">
+                                <label for="addressState">UF</label>
+                                <input type="text" id="addressState" placeholder="UF" maxlength="2">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Seleção de Taxa por Bairro -->
+                    <div class="delivery-fee-section">
+                        <h4>Taxa de Entrega</h4>
+                        <select id="deliveryNeighborhood" class="delivery-select">
+                            <option value="">Selecione o bairro para taxa...</option>
+                            <option value="5">Centro - R$ 5,00</option>
+                            <option value="5">Praia Grande - R$ 5,00</option>
+                            <option value="5">Vila Amélia - R$ 5,00</option>
+                            <option value="6">Itatinga - R$ 6,00</option>
+                            <option value="6">Olaria - R$ 6,00</option>
+                            <option value="6">Porto Grande - R$ 6,00</option>
+                            <option value="6">Praia Deserta - R$ 6,00</option>
+                            <option value="6">Topolândia - R$ 6,00</option>
+                            <option value="7">Pontal da Cruz - R$ 7,00</option>
+                            <option value="7">Praia Preta - R$ 7,00</option>
+                            <option value="7">Varadouro - R$ 7,00</option>
+                            <option value="8">Arrastão - R$ 8,00</option>
+                            <option value="9">Portal da Olaria - R$ 9,00</option>
+                            <option value="9">Reserva do Moulin - R$ 9,00</option>
+                            <option value="10">Morro do Abrigo - R$ 10,00</option>
+                            <option value="10">São Francisco - R$ 10,00</option>
+                            <option value="12">Figueira - R$ 12,00</option>
+                        </select>
+                        <div class="delivery-fee" id="deliveryFeeDisplay">
+                            Taxa de entrega: <span id="deliveryFeeValue">R$ 0,00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Método de Pagamento -->
+                <div class="cart-section cart-payment" id="cartPayment">
+                    <h4>Forma de Pagamento</h4>
+                    <div class="payment-options">
+                        <label class="radio-label">
+                            <input type="radio" name="paymentMethod" value="credito">
+                            <span class="radio-checkmark"></span>
+                            Cartão de Crédito
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="paymentMethod" value="debito">
+                            <span class="radio-checkmark"></span>
+                            Cartão de Débito
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="paymentMethod" value="pix">
+                            <span class="radio-checkmark"></span>
+                            PIX
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="paymentMethod" value="dinheiro">
+                            <span class="radio-checkmark"></span>
+                            Dinheiro
+                        </label>
+                    </div>
+                    <div class="change-section" id="changeSection">
+                        <label for="changeAmount">Troco para quanto?</label>
+                        <input type="text" id="changeAmount" placeholder="Ex: R$ 100,00">
+                        <span class="change-info">Informe o valor para calcularmos o troco</span>
+                    </div>
+                </div>
+            </div><!-- Fecha cart-body -->
+
+            <div class="cart-footer" id="cartFooter">
+                <div class="cart-subtotal">
+                    <span>Subtotal:</span>
+                    <span id="cartSubtotal">R$ 0,00</span>
+                </div>
+                <div class="cart-delivery-total">
+                    <span>Entrega:</span>
+                    <span id="cartDeliveryFee">R$ 0,00</span>
+                </div>
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="cartTotal">R$ 0,00</span>
+                </div>
+                <button class="btn-whatsapp" id="btnWhatsapp">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="currentColor"/>
+                    </svg>
+                    Finalizar no WhatsApp
+                </button>
+                <button class="btn-clear-cart" id="btnClearCart">Limpar Carrinho</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Opcionais -->
+    <div class="options-modal" id="optionsModal">
+        <div class="options-modal-content">
+            <div class="options-header">
+                <h2 id="optionsItemName">Nome do Lanche</h2>
+                <p class="options-item-price" id="optionsItemPrice">R$ 0,00</p>
+                <button class="options-close" id="optionsClose">&times;</button>
+            </div>
+            <div class="options-body">
+                <!-- Combos -->
+                <div class="options-section">
+                    <div class="options-section-header">
+                        <h4>1 - Vamos adicionar Combo?</h4>
+                        <span class="options-limit">Máximo: 0/1</span>
+                    </div>
+                    <div class="options-list" id="comboOptions">
+                        <label class="option-item">
+                            <input type="radio" name="combo" value="coca" data-price="15">
+                            <span class="option-checkmark"></span>
+                            <div class="option-info">
+                                <span class="option-name">Combo coca-cola lata + fritas</span>
+                                <span class="option-price">+R$ 15,00</span>
+                            </div>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="combo" value="guarana" data-price="15">
+                            <span class="option-checkmark"></span>
+                            <div class="option-info">
+                                <span class="option-name">Combo guaraná antarctica lata + fritas</span>
+                                <span class="option-price">+R$ 15,00</span>
+                            </div>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="combo" value="coca-zero" data-price="15">
+                            <span class="option-checkmark"></span>
+                            <div class="option-info">
+                                <span class="option-name">Combo coca-cola zero lata + fritas</span>
+                                <span class="option-price">+R$ 15,00</span>
+                            </div>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="combo" value="suco" data-price="15">
+                            <span class="option-checkmark"></span>
+                            <div class="option-info">
+                                <span class="option-name">Combo suco del valle uva lata + fritas</span>
+                                <span class="option-price">+R$ 15,00</span>
+                            </div>
+                        </label>
+                        <label class="option-item">
+                            <input type="radio" name="combo" value="none" data-price="0" checked>
+                            <span class="option-checkmark"></span>
+                            <div class="option-info">
+                                <span class="option-name">Sem combo</span>
+                                <span class="option-price">R$ 0,00</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Adicionais -->
+                <div class="options-section">
+                    <div class="options-section-header">
+                        <h4>2 - Deseja adicionais?</h4>
+                        <span class="options-limit">Máximo: 0/6</span>
+                    </div>
+                    <div class="options-list" id="additionalOptions">
+                        <label class="option-item">
+                            <input type="checkbox" name="adicional" value="rucula" data-price="4">
+                            <span class="option-checkbox"></span>
+                            <div class="option-info">
+                                <span class="option-name">Adicional rúcula</span>
+                                <span class="option-price">+R$ 4,00</span>
+                            </div>
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" name="adicional" value="bacon" data-price="8">
+                            <span class="option-checkbox"></span>
+                            <div class="option-info">
+                                <span class="option-name">Adicional de bacon</span>
+                                <span class="option-price">+R$ 8,00</span>
+                            </div>
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" name="adicional" value="cheddar" data-price="8">
+                            <span class="option-checkbox"></span>
+                            <div class="option-info">
+                                <span class="option-name">Adicional de cheddar</span>
+                                <span class="option-price">+R$ 8,00</span>
+                            </div>
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" name="adicional" value="catupiry" data-price="8">
+                            <span class="option-checkbox"></span>
+                            <div class="option-info">
+                                <span class="option-name">Adicional de catupiry</span>
+                                <span class="option-price">+R$ 8,00</span>
+                            </div>
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" name="adicional" value="cebola-caramelizada" data-price="6">
+                            <span class="option-checkbox"></span>
+                            <div class="option-info">
+                                <span class="option-name">Adicional de cebola caramelizada</span>
+                                <span class="option-price">+R$ 6,00</span>
+                            </div>
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" name="adicional" value="salada" data-price="6">
+                            <span class="option-checkbox"></span>
+                            <div class="option-info">
+                                <span class="option-name">Adicional de salada</span>
+                                <span class="option-price">+R$ 6,00</span>
+                            </div>
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" name="adicional" value="ovo" data-price="4">
+                            <span class="option-checkbox"></span>
+                            <div class="option-info">
+                                <span class="option-name">Adicional de ovo</span>
+                                <span class="option-price">+R$ 4,00</span>
+                            </div>
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" name="adicional" value="hamburguer" data-price="15">
+                            <span class="option-checkbox"></span>
+                            <div class="option-info">
+                                <span class="option-name">Adicional hambúrguer 160g</span>
+                                <span class="option-price">+R$ 15,00</span>
+                            </div>
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" name="adicional" value="provolone" data-price="6">
+                            <span class="option-checkbox"></span>
+                            <div class="option-info">
+                                <span class="option-name">Adicional queijo provolone</span>
+                                <span class="option-price">+R$ 6,00</span>
+                            </div>
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" name="adicional" value="queijo-prato" data-price="6">
+                            <span class="option-checkbox"></span>
+                            <div class="option-info">
+                                <span class="option-name">Adicional queijo prato</span>
+                                <span class="option-price">+R$ 6,00</span>
+                            </div>
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" name="adicional" value="picles" data-price="4">
+                            <span class="option-checkbox"></span>
+                            <div class="option-info">
+                                <span class="option-name">Adicional picles</span>
+                                <span class="option-price">+R$ 4,00</span>
+                            </div>
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" name="adicional" value="cebola-roxa" data-price="4">
+                            <span class="option-checkbox"></span>
+                            <div class="option-info">
+                                <span class="option-name">Adicional cebola roxa</span>
+                                <span class="option-price">+R$ 4,00</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Maionese Verde -->
+                <div class="options-section">
+                    <div class="options-section-header">
+                        <h4>3 - Maionese Verde?</h4>
+                        <span class="options-limit">Opcional</span>
+                    </div>
+                    <div class="options-list">
+                        <label class="option-item">
+                            <input type="checkbox" name="maionese-verde" value="sim" data-price="4" id="maioneseVerde">
+                            <span class="option-checkbox"></span>
+                            <div class="option-info">
+                                <span class="option-name">Adicionar maionese verde</span>
+                                <span class="option-price">+R$ 4,00</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="options-footer">
+                <div class="options-total">
+                    <span>Total:</span>
+                    <span id="optionsTotalPrice">R$ 0,00</span>
+                </div>
+                <button class="btn-add-to-cart" id="btnAddWithOptions">
+                    Adicionar ao Carrinho
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmação de Remoção -->
+    <div class="confirm-modal" id="confirmModal">
+        <div class="confirm-modal-content">
+            <div class="confirm-modal-icon">?</div>
+            <h3>Remover item</h3>
+            <p>Deseja remover este item do carrinho?</p>
+            <div class="confirm-modal-buttons">
+                <button class="btn-confirm-cancel" id="btnConfirmCancel">Não, manter</button>
+                <button class="btn-confirm-ok" id="btnConfirmOk">Sim, remover</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

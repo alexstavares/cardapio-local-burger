@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - LocalBurger Admin</title>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h1 class="sidebar-logo">LocalBurger</h1>
+            <p class="sidebar-subtitle">Admin</p>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item active" data-section="produtos">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <path d="M16 10a4 4 0 0 1-8 0"></path>
+                </svg>
+                <span>Produtos</span>
+            </a>
+            <a href="#" class="nav-item" data-section="adicionais">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                <span>Adicionais</span>
+            </a>
+            <a href="#" class="nav-item" data-section="combos">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="9" y1="3" x2="9" y2="21"></line>
+                </svg>
+                <span>Combos</span>
+            </a>
+            <a href="#" class="nav-item" data-section="taxas">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+                <span>Taxas de Entrega</span>
+            </a>
+            <a href="#" class="nav-item" data-section="config">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+                <span>Configurações</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="user-info">
+                <div class="user-avatar" id="userAvatar">A</div>
+                <div class="user-details">
+                    <span class="user-name" id="userName">Admin</span>
+                    <span class="user-role" id="userRole">Administrador</span>
+                </div>
+            </div>
+            <button class="btn-logout" id="btnLogout">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                    <polyline points="16 17 21 12 16 7"></polyline>
+                    <line x1="21" y1="12" x2="9" y2="12"></line>
+                </svg>
+                Sair
+            </button>
+        </div>
+    </aside>
+
+    <!-- Menu mobile -->
+    <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+    </button>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="content-header">
+            <h2 class="page-title" id="pageTitle">Produtos</h2>
+            <button class="btn-primary" id="btnAdd">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                <span>Adicionar</span>
+            </button>
+        </header>
+
+        <!-- Seção Produtos -->
+        <section class="content-section" id="sectionProdutos">
+            <!-- Filtros -->
+            <div class="filters">
+                <div class="filter-group">
+                    <label>Categoria:</label>
+                    <select id="filterCategoria">
+                        <option value="">Todas</option>
+                        <option value="lanche">Hambúrguer Artesanal</option>
+                        <option value="smash">Ultra Smash</option>
+                        <option value="porcao">Porções</option>
+                        <option value="kids">Kids</option>
+                        <option value="bebida">Bebidas</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Status:</label>
+                    <select id="filterStatus">
+                        <option value="">Todos</option>
+                        <option value="true">Ativos</option>
+                        <option value="false">Inativos</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Tabela de Produtos -->
+            <div class="table-container">
+                <table class="data-table" id="productsTable">
+                    <thead>
+                        <tr>
+                            <th>Imagem</th>
+                            <th>Nome</th>
+                            <th>Categoria</th>
+                            <th>Preço</th>
+                            <th>Badge</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productsBody">
+                        <!-- Produtos serão inseridos via JS -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="loading-state" id="loadingProducts">
+                <div class="spinner"></div>
+                <p>Carregando produtos...</p>
+            </div>
+            <div class="empty-state" id="emptyProducts" style="display:none">
+                <p>Nenhum produto encontrado</p>
+            </div>
+        </section>
+
+        <!-- Seção Adicionais -->
+        <section class="content-section" id="sectionAdicionais" style="display:none">
+            <div class="card-grid" id="adicionaisGrid">
+                <!-- Adicionais serão inseridos via JS -->
+            </div>
+            <div class="loading-state" id="loadingAdicionais" style="display:none">
+                <div class="spinner"></div>
+                <p>Carregando adicionais...</p>
+            </div>
+        </section>
+
+        <!-- Seção Combos -->
+        <section class="content-section" id="sectionCombos" style="display:none">
+            <div class="info-card">
+                <h3>Preço Padrão do Combo</h3>
+                <div class="inline-form">
+                    <input type="number" id="comboPreco" step="0.01" min="0">
+                    <button class="btn-save" id="btnSaveComboPreco">Salvar</button>
+                </div>
+            </div>
+            <div class="card-grid" id="combosGrid">
+                <!-- Combos serão inseridos via JS -->
+            </div>
+
+            <div class="info-card" style="margin-top: 2rem;">
+                <h3>Maionese Verde</h3>
+                <div class="inline-form">
+                    <label>
+                        <input type="checkbox" id="maioneseAtivo">
+                        Ativo
+                    </label>
+                    <input type="number" id="maionesePreco" step="0.01" min="0" placeholder="Preço">
+                    <button class="btn-save" id="btnSaveMaionese">Salvar</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Taxas de Entrega -->
+        <section class="content-section" id="sectionTaxas" style="display:none">
+            <div class="card-grid" id="taxasGrid">
+                <!-- Taxas serão inseridas via JS -->
+            </div>
+        </section>
+
+        <!-- Seção Configurações -->
+        <section class="content-section" id="sectionConfig" style="display:none">
+            <div class="config-form">
+                <div class="form-group">
+                    <label for="configNomeLoja">Nome da Loja</label>
+                    <input type="text" id="configNomeLoja">
+                </div>
+                <div class="form-group">
+                    <label for="configWhatsapp">WhatsApp (com DDD)</label>
+                    <input type="text" id="configWhatsapp" placeholder="5512999999999">
+                </div>
+                <div class="form-group">
+                    <label for="configEndereco">Endereço</label>
+                    <textarea id="configEndereco" rows="2"></textarea>
+                </div>
+                <button class="btn-primary" id="btnSaveConfig">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                        <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                        <polyline points="7 3 7 8 15 8"></polyline>
+                    </svg>
+                    Salvar Configurações
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal de Produto -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Novo Produto</h3>
+                <button class="modal-close" id="modalClose">&times;</button>
+            </div>
+            <form id="productForm" class="modal-body">
+                <input type="hidden" id="productId">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="productNome">Nome *</label>
+                        <input type="text" id="productNome" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="productDescricao">Descrição *</label>
+                        <textarea id="productDescricao" rows="3" required></textarea>
+                    </div>
+                </div>
+                <div class="form-row two-cols">
+                    <div class="form-group">
+                        <label for="productPreco">Preço (R$) *</label>
+                        <input type="number" id="productPreco" step="0.01" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productCategoria">Categoria *</label>
+                        <select id="productCategoria" required>
+                            <option value="">Selecione...</option>
+                            <option value="lanche">Hambúrguer Artesanal</option>
+                            <option value="smash">Ultra Smash</option>
+                            <option value="porcao">Porções</option>
+                            <option value="kids">Kids</option>
+                            <option value="bebida">Bebidas</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row two-cols">
+                    <div class="form-group">
+                        <label for="productBadge">Badge</label>
+                        <select id="productBadge">
+                            <option value="">Nenhum</option>
+                            <option value="Clássico">Clássico</option>
+                            <option value="Popular">Popular</option>
+                            <option value="Premium">Premium</option>
+                            <option value="Novo">Novo</option>
+                            <option value="Vegano">Vegano</option>
+                            <option value="Kids">Kids</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="productOrdem">Ordem</label>
+                        <input type="number" id="productOrdem" min="0" value="0">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="productImagem">URL da Imagem</label>
+                        <input type="url" id="productImagem" placeholder="https://...">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group checkbox-group">
+                        <label>
+                            <input type="checkbox" id="productAtivo" checked>
+                            Produto Ativo
+                        </label>
+                    </div>
+                </div>
+                <div class="form-error" id="productError"></div>
+            </form>
+            <div class="modal-footer">
+                <button type="button" class="btn-cancel" id="btnCancelProduct">Cancelar</button>
+                <button type="submit" form="productForm" class="btn-primary" id="btnSaveProduct">
+                    <span class="btn-text">Salvar</span>
+                    <span class="btn-loading" style="display:none">
+                        <svg class="spinner" width="20" height="20" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" fill="none" stroke-dasharray="31.4 31.4" stroke-linecap="round">
+                                <animateTransform attributeName="transform" type="rotate" dur="1s" from="0 12 12" to="360 12 12" repeatCount="indefinite"/>
+                            </circle>
+                        </svg>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Adicional -->
+    <div class="modal" id="adicionalModal">
+        <div class="modal-content modal-sm">
+            <div class="modal-header">
+                <h3 id="adicionalModalTitle">Editar Adicional</h3>
+                <button class="modal-close" id="adicionalModalClose">&times;</button>
+            </div>
+            <form id="adicionalForm" class="modal-body">
+                <input type="hidden" id="adicionalIndex">
+                <div class="form-group">
+                    <label for="adicionalNome">Nome *</label>
+                    <input type="text" id="adicionalNome" required>
+                </div>
+                <div class="form-group">
+                    <label for="adicionalPreco">Preço (R$) *</label>
+                    <input type="number" id="adicionalPreco" step="0.01" min="0" required>
+                </div>
+                <div class="form-group checkbox-group">
+                    <label>
+                        <input type="checkbox" id="adicionalAtivo" checked>
+                        Ativo
+                    </label>
+                </div>
+            </form>
+            <div class="modal-footer">
+                <button type="button" class="btn-cancel" id="btnCancelAdicional">Cancelar</button>
+                <button type="submit" form="adicionalForm" class="btn-primary">Salvar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Combo -->
+    <div class="modal" id="comboModal">
+        <div class="modal-content modal-sm">
+            <div class="modal-header">
+                <h3 id="comboModalTitle">Editar Combo</h3>
+                <button class="modal-close" id="comboModalClose">&times;</button>
+            </div>
+            <form id="comboForm" class="modal-body">
+                <input type="hidden" id="comboIndex">
+                <div class="form-group">
+                    <label for="comboNome">Nome *</label>
+                    <input type="text" id="comboNome" required>
+                </div>
+                <div class="form-group">
+                    <label for="comboDescricao">Descrição</label>
+                    <input type="text" id="comboDescricao">
+                </div>
+                <div class="form-group">
+                    <label for="comboPrecoItem">Preço (R$) *</label>
+                    <input type="number" id="comboPrecoItem" step="0.01" min="0" required>
+                </div>
+                <div class="form-group checkbox-group">
+                    <label>
+                        <input type="checkbox" id="comboAtivo" checked>
+                        Ativo
+                    </label>
+                </div>
+            </form>
+            <div class="modal-footer">
+                <button type="button" class="btn-cancel" id="btnCancelCombo">Cancelar</button>
+                <button type="submit" form="comboForm" class="btn-primary">Salvar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Taxa -->
+    <div class="modal" id="taxaModal">
+        <div class="modal-content modal-sm">
+            <div class="modal-header">
+                <h3 id="taxaModalTitle">Editar Taxa de Entrega</h3>
+                <button class="modal-close" id="taxaModalClose">&times;</button>
+            </div>
+            <form id="taxaForm" class="modal-body">
+                <input type="hidden" id="taxaIndex">
+                <div class="form-group">
+                    <label for="taxaBairro">Bairro *</label>
+                    <input type="text" id="taxaBairro" required>
+                </div>
+                <div class="form-group">
+                    <label for="taxaPreco">Taxa (R$) *</label>
+                    <input type="number" id="taxaPreco" step="0.01" min="0" required>
+                </div>
+                <div class="form-group checkbox-group">
+                    <label>
+                        <input type="checkbox" id="taxaAtivo" checked>
+                        Ativo
+                    </label>
+                </div>
+            </form>
+            <div class="modal-footer">
+                <button type="button" class="btn-cancel" id="btnCancelTaxa">Cancelar</button>
+                <button type="submit" form="taxaForm" class="btn-primary">Salvar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmação -->
+    <div class="modal" id="confirmModal">
+        <div class="modal-content modal-sm">
+            <div class="modal-header">
+                <h3>Confirmar Exclusão</h3>
+                <button class="modal-close" id="confirmModalClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="confirmMessage">Tem certeza que deseja excluir este item?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-cancel" id="btnConfirmCancel">Cancelar</button>
+                <button type="button" class="btn-danger" id="btnConfirmOk">Excluir</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <div class="toast-content">
+            <span class="toast-icon" id="toastIcon"></span>
+            <span id="toastMessage"></span>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
