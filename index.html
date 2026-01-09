@@ -27,27 +27,17 @@
         </div>
     </header>
 
-    <!-- Hero Section com Imagem de Praia -->
+    <!-- Hero Section -->
     <section class="hero">
-        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=80" alt="Praia" class="hero-bg">
-        <div class="hero-glass-overlay"></div>
         <div class="hero-content">
-            <h2 class="hero-title">Local Burger</h2>
+            <h2 class="hero-title">Sabor que Conquista</h2>
             <p class="hero-subtitle">Hambúrgueres artesanais feitos com ingredientes selecionados</p>
-            <div class="hero-stats">
-                <div class="hero-stat">
-                    <span class="stat-value">+10</span>
-                    <span class="stat-label">Opções de lanches</span>
-                </div>
-                <div class="hero-stat">
-                    <span class="stat-value">100%</span>
-                    <span class="stat-label">Artesanal</span>
-                </div>
-                <div class="hero-stat">
-                    <span class="stat-value">Rápido</span>
-                    <span class="stat-label">Delivery</span>
-                </div>
-            </div>
+            <a href="https://wa.me/5512982837333" target="_blank" class="btn-primary">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="currentColor"/>
+                </svg>
+                Peça pelo WhatsApp
+            </a>
             <div class="hero-info">
                 <div class="info-item">
                     <span class="info-icon">🕐</span>
@@ -58,13 +48,8 @@
                     <span>São Sebastião - SP</span>
                 </div>
             </div>
-            <a href="#lanches" class="btn-scroll">
-                <span>Ver Cardápio</span>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M7 10l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </a>
         </div>
+        <div class="hero-decoration"></div>
     </section>
 
     <!-- Menu Section - Hambúrguer Artesanal -->
@@ -74,11 +59,7 @@
                 <h2 class="section-title">Hambúrguer Artesanal</h2>
                 <p class="section-subtitle">Hambúrguer artesanal de fraldinha 160g</p>
             </div>
-            <div class="menu-grid" id="menuLanches">
-                <div class="loading-menu">Carregando cardápio...</div>
-            </div>
-            <!-- Produtos estáticos removidos - agora carregam da API -->
-            <div class="menu-grid-static" style="display:none">
+            <div class="menu-grid">
                 <div class="menu-card" data-category="lanche">
                     <div class="card-image">
                         <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400" alt="Local Burger">
@@ -226,7 +207,6 @@
                     </div>
                 </div>
             </div>
-            </div><!-- fecha menu-grid-static -->
         </div>
     </section>
 
@@ -237,10 +217,7 @@
                 <h2 class="section-title">Ultra Smash</h2>
                 <p class="section-subtitle">Pão brioche tostado na manteiga com 2 ultra smash 40g cada</p>
             </div>
-            <div class="menu-grid" id="menuSmash">
-                <div class="loading-menu">Carregando...</div>
-            </div>
-            <div class="menu-grid-static" style="display:none">
+            <div class="menu-grid">
                 <div class="menu-card" data-category="smash">
                     <div class="card-image">
                         <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400" alt="Ultra Smash Burger">
@@ -299,7 +276,6 @@
                     </div>
                 </div>
             </div>
-            </div><!-- fecha menu-grid-static smash -->
         </div>
     </section>
 
@@ -310,10 +286,7 @@
                 <h2 class="section-title">Porções</h2>
                 <p class="section-subtitle">Acompanhamentos deliciosos</p>
             </div>
-            <div class="menu-grid" id="menuPorcoes">
-                <div class="loading-menu">Carregando...</div>
-            </div>
-            <div class="menu-grid-static" style="display:none">
+            <div class="menu-grid">
                 <div class="menu-card" data-category="porcao">
                     <div class="card-image">
                         <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=400" alt="Batata Frita Pequena">
@@ -372,7 +345,6 @@
                     </div>
                 </div>
             </div>
-            </div><!-- fecha menu-grid-static porcoes -->
         </div>
     </section>
 
@@ -383,10 +355,7 @@
                 <h2 class="section-title">Local Kids</h2>
                 <p class="section-subtitle">Para os pequenos</p>
             </div>
-            <div class="menu-grid" id="menuKids">
-                <div class="loading-menu">Carregando...</div>
-            </div>
-            <div class="menu-grid-static" style="display:none">
+            <div class="menu-grid">
                 <div class="menu-card" data-category="kids">
                     <div class="card-image">
                         <img src="https://images.unsplash.com/photo-1561758033-d89a9ad46330?w=400" alt="Local Kids">
@@ -402,7 +371,6 @@
                     </div>
                 </div>
             </div>
-            </div><!-- fecha menu-grid-static kids -->
         </div>
     </section>
 
@@ -413,10 +381,7 @@
                 <h2 class="section-title">Bebidas</h2>
                 <p class="section-subtitle">Para acompanhar seu lanche</p>
             </div>
-            <div class="menu-grid bebidas-grid" id="menuBebidas">
-                <div class="loading-menu">Carregando...</div>
-            </div>
-            <div class="menu-grid-static bebidas-grid" style="display:none">
+            <div class="menu-grid bebidas-grid">
                 <div class="menu-card" data-category="bebida">
                     <div class="card-image">
                         <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=400" alt="Coca Cola">
@@ -487,7 +452,6 @@
                     </div>
                 </div>
             </div>
-            </div><!-- fecha menu-grid-static bebidas -->
         </div>
     </section>
 
@@ -498,14 +462,8 @@
                 <div class="footer-section">
                     <h3>LocalBurger</h3>
                     <p>Hambúrgueres artesanais que conquistam pelo sabor</p>
-                    <p class="whatsapp-cta">Clique para falar conosco pelo WhatsApp</p>
                     <a href="https://wa.me/5512982837333" target="_blank" class="footer-whatsapp">
-                        <span class="whatsapp-icon">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                            </svg>
-                        </span>
-                        (12) 98283-7333
+                        📱 (12) 98283-7333
                     </a>
                 </div>
 
@@ -726,213 +684,12 @@
         </div>
     </div>
 
-    <!-- Modal de Opcionais -->
-    <div class="options-modal" id="optionsModal">
-        <div class="options-modal-content">
-            <div class="options-header">
-                <h2 id="optionsItemName">Nome do Lanche</h2>
-                <p class="options-item-price" id="optionsItemPrice">R$ 0,00</p>
-                <button class="options-close" id="optionsClose">&times;</button>
-            </div>
-            <div class="options-body">
-                <!-- Combos -->
-                <div class="options-section">
-                    <div class="options-section-header">
-                        <h4>1 - Vamos adicionar Combo?</h4>
-                        <span class="options-limit">Máximo: 0/1</span>
-                    </div>
-                    <div class="options-list" id="comboOptions">
-                        <label class="option-item">
-                            <input type="radio" name="combo" value="coca" data-price="15">
-                            <span class="option-checkmark"></span>
-                            <div class="option-info">
-                                <span class="option-name">Combo coca-cola lata + fritas</span>
-                                <span class="option-price">+R$ 15,00</span>
-                            </div>
-                        </label>
-                        <label class="option-item">
-                            <input type="radio" name="combo" value="guarana" data-price="15">
-                            <span class="option-checkmark"></span>
-                            <div class="option-info">
-                                <span class="option-name">Combo guaraná antarctica lata + fritas</span>
-                                <span class="option-price">+R$ 15,00</span>
-                            </div>
-                        </label>
-                        <label class="option-item">
-                            <input type="radio" name="combo" value="coca-zero" data-price="15">
-                            <span class="option-checkmark"></span>
-                            <div class="option-info">
-                                <span class="option-name">Combo coca-cola zero lata + fritas</span>
-                                <span class="option-price">+R$ 15,00</span>
-                            </div>
-                        </label>
-                        <label class="option-item">
-                            <input type="radio" name="combo" value="suco" data-price="15">
-                            <span class="option-checkmark"></span>
-                            <div class="option-info">
-                                <span class="option-name">Combo suco del valle uva lata + fritas</span>
-                                <span class="option-price">+R$ 15,00</span>
-                            </div>
-                        </label>
-                        <label class="option-item">
-                            <input type="radio" name="combo" value="none" data-price="0" checked>
-                            <span class="option-checkmark"></span>
-                            <div class="option-info">
-                                <span class="option-name">Sem combo</span>
-                                <span class="option-price">R$ 0,00</span>
-                            </div>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Adicionais -->
-                <div class="options-section">
-                    <div class="options-section-header">
-                        <h4>2 - Deseja adicionais?</h4>
-                        <span class="options-limit">Máximo: 0/6</span>
-                    </div>
-                    <div class="options-list" id="additionalOptions">
-                        <label class="option-item">
-                            <input type="checkbox" name="adicional" value="rucula" data-price="4">
-                            <span class="option-checkbox"></span>
-                            <div class="option-info">
-                                <span class="option-name">Adicional rúcula</span>
-                                <span class="option-price">+R$ 4,00</span>
-                            </div>
-                        </label>
-                        <label class="option-item">
-                            <input type="checkbox" name="adicional" value="bacon" data-price="8">
-                            <span class="option-checkbox"></span>
-                            <div class="option-info">
-                                <span class="option-name">Adicional de bacon</span>
-                                <span class="option-price">+R$ 8,00</span>
-                            </div>
-                        </label>
-                        <label class="option-item">
-                            <input type="checkbox" name="adicional" value="cheddar" data-price="8">
-                            <span class="option-checkbox"></span>
-                            <div class="option-info">
-                                <span class="option-name">Adicional de cheddar</span>
-                                <span class="option-price">+R$ 8,00</span>
-                            </div>
-                        </label>
-                        <label class="option-item">
-                            <input type="checkbox" name="adicional" value="catupiry" data-price="8">
-                            <span class="option-checkbox"></span>
-                            <div class="option-info">
-                                <span class="option-name">Adicional de catupiry</span>
-                                <span class="option-price">+R$ 8,00</span>
-                            </div>
-                        </label>
-                        <label class="option-item">
-                            <input type="checkbox" name="adicional" value="cebola-caramelizada" data-price="6">
-                            <span class="option-checkbox"></span>
-                            <div class="option-info">
-                                <span class="option-name">Adicional de cebola caramelizada</span>
-                                <span class="option-price">+R$ 6,00</span>
-                            </div>
-                        </label>
-                        <label class="option-item">
-                            <input type="checkbox" name="adicional" value="salada" data-price="6">
-                            <span class="option-checkbox"></span>
-                            <div class="option-info">
-                                <span class="option-name">Adicional de salada</span>
-                                <span class="option-price">+R$ 6,00</span>
-                            </div>
-                        </label>
-                        <label class="option-item">
-                            <input type="checkbox" name="adicional" value="ovo" data-price="4">
-                            <span class="option-checkbox"></span>
-                            <div class="option-info">
-                                <span class="option-name">Adicional de ovo</span>
-                                <span class="option-price">+R$ 4,00</span>
-                            </div>
-                        </label>
-                        <label class="option-item">
-                            <input type="checkbox" name="adicional" value="hamburguer" data-price="15">
-                            <span class="option-checkbox"></span>
-                            <div class="option-info">
-                                <span class="option-name">Adicional hambúrguer 160g</span>
-                                <span class="option-price">+R$ 15,00</span>
-                            </div>
-                        </label>
-                        <label class="option-item">
-                            <input type="checkbox" name="adicional" value="provolone" data-price="6">
-                            <span class="option-checkbox"></span>
-                            <div class="option-info">
-                                <span class="option-name">Adicional queijo provolone</span>
-                                <span class="option-price">+R$ 6,00</span>
-                            </div>
-                        </label>
-                        <label class="option-item">
-                            <input type="checkbox" name="adicional" value="queijo-prato" data-price="6">
-                            <span class="option-checkbox"></span>
-                            <div class="option-info">
-                                <span class="option-name">Adicional queijo prato</span>
-                                <span class="option-price">+R$ 6,00</span>
-                            </div>
-                        </label>
-                        <label class="option-item">
-                            <input type="checkbox" name="adicional" value="picles" data-price="4">
-                            <span class="option-checkbox"></span>
-                            <div class="option-info">
-                                <span class="option-name">Adicional picles</span>
-                                <span class="option-price">+R$ 4,00</span>
-                            </div>
-                        </label>
-                        <label class="option-item">
-                            <input type="checkbox" name="adicional" value="cebola-roxa" data-price="4">
-                            <span class="option-checkbox"></span>
-                            <div class="option-info">
-                                <span class="option-name">Adicional cebola roxa</span>
-                                <span class="option-price">+R$ 4,00</span>
-                            </div>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Maionese Verde -->
-                <div class="options-section">
-                    <div class="options-section-header">
-                        <h4>3 - Maionese Verde?</h4>
-                        <span class="options-limit">Opcional</span>
-                    </div>
-                    <div class="options-list">
-                        <label class="option-item">
-                            <input type="checkbox" name="maionese-verde" value="sim" data-price="4" id="maioneseVerde">
-                            <span class="option-checkbox"></span>
-                            <div class="option-info">
-                                <span class="option-name">Adicionar maionese verde</span>
-                                <span class="option-price">+R$ 4,00</span>
-                            </div>
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="options-footer">
-                <div class="options-total">
-                    <span>Total:</span>
-                    <span id="optionsTotalPrice">R$ 0,00</span>
-                </div>
-                <button class="btn-add-to-cart" id="btnAddWithOptions">
-                    Adicionar ao Carrinho
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal de Confirmação de Remoção -->
-    <div class="confirm-modal" id="confirmModal">
-        <div class="confirm-modal-content">
-            <div class="confirm-modal-icon">?</div>
-            <h3>Remover item</h3>
-            <p>Deseja remover este item do carrinho?</p>
-            <div class="confirm-modal-buttons">
-                <button class="btn-confirm-cancel" id="btnConfirmCancel">Não, manter</button>
-                <button class="btn-confirm-ok" id="btnConfirmOk">Sim, remover</button>
-            </div>
-        </div>
-    </div>
+    <!-- Botão flutuante WhatsApp -->
+    <a href="https://wa.me/5512982837333" target="_blank" class="whatsapp-float" title="Peça pelo WhatsApp">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="currentColor"/>
+        </svg>
+    </a>
 
     <script src="script.js"></script>
 </body>

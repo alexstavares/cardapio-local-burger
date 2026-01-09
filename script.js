@@ -1,192 +1,3 @@
-// ===== CARREGAMENTO DE DADOS DA API =====
-const API_URL = '/api';
-
-// Estado global para armazenar configurações
-let appSettings = null;
-
-// Carregar produtos e configurações da API
-async function loadMenuFromAPI() {
-    try {
-        // Carregar produtos e configurações em paralelo
-        const [productsRes, settingsRes] = await Promise.all([
-            fetch(`${API_URL}/products`),
-            fetch(`${API_URL}/settings`)
-        ]);
-
-        const productsData = await productsRes.json();
-        const settingsData = await settingsRes.json();
-
-        if (productsData.success && productsData.products) {
-            renderProducts(productsData.products);
-        }
-
-        if (settingsData.success && settingsData.settings) {
-            appSettings = settingsData.settings;
-            updateOptionsFromSettings();
-            updateDeliveryFeesFromSettings();
-        }
-
-    } catch (error) {
-        console.error('Erro ao carregar dados da API:', error);
-        // Fallback: manter produtos estáticos se a API falhar
-        document.querySelectorAll('.menu-grid-static').forEach(el => {
-            el.style.display = 'grid';
-        });
-        document.querySelectorAll('.loading-menu').forEach(el => {
-            el.remove();
-        });
-    }
-}
-
-// Renderizar produtos por categoria
-function renderProducts(products) {
-    const categoryMap = {
-        'lanche': 'menuLanches',
-        'smash': 'menuSmash',
-        'porcao': 'menuPorcoes',
-        'kids': 'menuKids',
-        'bebida': 'menuBebidas'
-    };
-
-    // Agrupar produtos por categoria
-    const grouped = {};
-    products.forEach(product => {
-        if (!grouped[product.categoria]) {
-            grouped[product.categoria] = [];
-        }
-        grouped[product.categoria].push(product);
-    });
-
-    // Renderizar cada categoria
-    Object.keys(categoryMap).forEach(categoria => {
-        const containerId = categoryMap[categoria];
-        const container = document.getElementById(containerId);
-
-        if (!container) return;
-
-        const categoryProducts = grouped[categoria] || [];
-
-        if (categoryProducts.length === 0) {
-            container.innerHTML = '<p style="color: var(--text-muted); text-align: center; padding: 2rem;">Nenhum produto disponível</p>';
-            return;
-        }
-
-        container.innerHTML = categoryProducts.map(product => `
-            <div class="menu-card" data-category="${product.categoria}" data-id="${product._id}">
-                <div class="card-image">
-                    <img src="${product.imagem}" alt="${product.nome}" loading="lazy">
-                    ${product.badge ? `<div class="card-badge">${product.badge}</div>` : ''}
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">${product.nome}</h3>
-                    <p class="card-description">${product.descricao}</p>
-                    <div class="card-footer">
-                        <span class="card-price">R$ ${product.preco.toFixed(2).replace('.', ',')}</span>
-                        <button class="btn-order">Adicionar</button>
-                    </div>
-                </div>
-            </div>
-        `).join('');
-    });
-
-    // Reconectar eventos dos botões após renderização
-    setTimeout(() => {
-        if (typeof Cart !== 'undefined' && Cart.convertButtons) {
-            Cart.convertButtons();
-        }
-    }, 100);
-}
-
-// Atualizar opcionais (combos, adicionais, maionese) com dados da API
-function updateOptionsFromSettings() {
-    if (!appSettings) return;
-
-    // Atualizar combos
-    const comboOptions = document.getElementById('comboOptions');
-    if (comboOptions && appSettings.combos) {
-        const activeCombos = appSettings.combos.filter(c => c.ativo);
-        comboOptions.innerHTML = activeCombos.map(combo => `
-            <label class="option-item">
-                <input type="radio" name="combo" value="${combo.nome}" data-price="${combo.preco}">
-                <span class="option-checkmark"></span>
-                <div class="option-info">
-                    <span class="option-name">${combo.nome}</span>
-                    <span class="option-price">+R$ ${combo.preco.toFixed(2).replace('.', ',')}</span>
-                </div>
-            </label>
-        `).join('') + `
-            <label class="option-item">
-                <input type="radio" name="combo" value="none" data-price="0" checked>
-                <span class="option-checkmark"></span>
-                <div class="option-info">
-                    <span class="option-name">Sem combo</span>
-                    <span class="option-price">R$ 0,00</span>
-                </div>
-            </label>
-        `;
-    }
-
-    // Atualizar adicionais
-    const additionalOptions = document.getElementById('additionalOptions');
-    if (additionalOptions && appSettings.adicionais) {
-        const activeAdicionais = appSettings.adicionais.filter(a => a.ativo);
-        additionalOptions.innerHTML = activeAdicionais.map(adicional => `
-            <label class="option-item">
-                <input type="checkbox" name="adicional" value="${adicional.nome}" data-price="${adicional.preco}">
-                <span class="option-checkbox"></span>
-                <div class="option-info">
-                    <span class="option-name">${adicional.nome}</span>
-                    <span class="option-price">+R$ ${adicional.preco.toFixed(2).replace('.', ',')}</span>
-                </div>
-            </label>
-        `).join('');
-    }
-
-    // Atualizar maionese verde
-    const maioneseVerde = document.getElementById('maioneseVerde');
-    if (maioneseVerde && appSettings.maionese_verde) {
-        maioneseVerde.dataset.price = appSettings.maionese_verde.preco;
-        const priceSpan = maioneseVerde.closest('.option-item')?.querySelector('.option-price');
-        if (priceSpan) {
-            priceSpan.textContent = `+R$ ${appSettings.maionese_verde.preco.toFixed(2).replace('.', ',')}`;
-        }
-        // Esconder se não estiver ativo
-        const maionesesection = maioneseVerde.closest('.options-section');
-        if (maionesesection && !appSettings.maionese_verde.ativo) {
-            maionesesection.style.display = 'none';
-        }
-    }
-
-    // Reconectar eventos dos inputs de opcionais
-    document.querySelectorAll('#optionsModal input').forEach(input => {
-        input.addEventListener('change', () => {
-            if (typeof Cart !== 'undefined' && Cart.updateOptionsTotal) {
-                Cart.updateOptionsTotal();
-            }
-        });
-    });
-}
-
-// Atualizar taxas de entrega com dados da API
-function updateDeliveryFeesFromSettings() {
-    if (!appSettings || !appSettings.taxas_entrega) return;
-
-    const deliverySelect = document.getElementById('deliveryNeighborhood');
-    if (!deliverySelect) return;
-
-    const activeTaxas = appSettings.taxas_entrega.filter(t => t.ativo);
-
-    deliverySelect.innerHTML = '<option value="">Selecione o bairro para taxa...</option>' +
-        activeTaxas.map(taxa => `
-            <option value="${taxa.preco}">${taxa.bairro} - R$ ${taxa.preco.toFixed(2).replace('.', ',')}</option>
-        `).join('');
-}
-
-// Inicializar carregamento quando o DOM estiver pronto
-document.addEventListener('DOMContentLoaded', () => {
-    loadMenuFromAPI();
-});
-
 // Smooth scroll para links de navegação
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -459,7 +270,6 @@ const Cart = {
         this.bindAddressEvents();
         this.bindPaymentEvents();
         this.bindSachetEvents();
-        this.bindOptionsEvents();
         this.updateUI();
         this.convertButtons();
     },
@@ -535,13 +345,6 @@ const Cart = {
         // Fechar com ESC
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') this.closeModal();
-        });
-
-        // Eventos do modal de confirmação
-        document.getElementById('btnConfirmCancel').addEventListener('click', () => this.closeConfirmModal());
-        document.getElementById('btnConfirmOk').addEventListener('click', () => this.confirmRemove());
-        document.getElementById('confirmModal').addEventListener('click', (e) => {
-            if (e.target.id === 'confirmModal') this.closeConfirmModal();
         });
     },
 
@@ -735,7 +538,7 @@ const Cart = {
     },
 
     convertButtons() {
-        // Converter todos os botões de "Pedir" para abrir modal de opcionais
+        // Converter todos os botões de "Pedir" para adicionar ao carrinho
         document.querySelectorAll('.btn-order').forEach(button => {
             const card = button.closest('.menu-card');
             if (!card) return;
@@ -743,7 +546,6 @@ const Cart = {
             const name = card.querySelector('.card-title')?.textContent || '';
             const priceText = card.querySelector('.card-price')?.textContent || '';
             const price = this.parsePrice(priceText);
-            const category = card.dataset.category || '';
 
             // Remover link e converter para botão
             button.removeAttribute('href');
@@ -752,200 +554,8 @@ const Cart = {
 
             button.addEventListener('click', (e) => {
                 e.preventDefault();
-                // Verificar se é lanche (hambúrguer ou smash) - mostra opcionais completos
-                if (category === 'lanche' || category === 'smash') {
-                    this.openOptionsModal(name, price, 'full');
-                } else if (category === 'porcao') {
-                    // Porções - mostra apenas maionese verde
-                    this.openOptionsModal(name, price, 'maionese-only');
-                } else {
-                    // Bebidas, kids - adiciona direto
-                    this.addItem(name, price);
-                }
+                this.addItem(name, price);
             });
-        });
-    },
-
-    // Modal de Opcionais
-    currentItem: null,
-
-    openOptionsModal(name, price, mode = 'full') {
-        this.currentItem = { name, basePrice: price, mode };
-
-        // Atualizar header do modal
-        document.getElementById('optionsItemName').textContent = name;
-        document.getElementById('optionsItemPrice').textContent = this.formatPrice(price);
-
-        // Resetar todas as seleções
-        document.querySelectorAll('#optionsModal input[type="radio"]').forEach(radio => {
-            radio.checked = radio.value === 'none';
-        });
-        document.querySelectorAll('#optionsModal input[type="checkbox"]').forEach(checkbox => {
-            checkbox.checked = false;
-        });
-
-        // Mostrar/esconder seções baseado no modo
-        const sections = document.querySelectorAll('#optionsModal .options-section');
-        sections.forEach((section, index) => {
-            if (mode === 'maionese-only') {
-                // Mostrar apenas a seção de maionese verde (índice 2)
-                section.style.display = index === 2 ? 'block' : 'none';
-            } else {
-                // Mostrar todas as seções
-                section.style.display = 'block';
-            }
-        });
-
-        // Atualizar total
-        this.updateOptionsTotal();
-
-        // Abrir modal
-        document.getElementById('optionsModal').classList.add('active');
-        document.body.style.overflow = 'hidden';
-    },
-
-    closeOptionsModal() {
-        document.getElementById('optionsModal').classList.remove('active');
-        document.body.style.overflow = '';
-        this.currentItem = null;
-    },
-
-    updateOptionsTotal() {
-        if (!this.currentItem) return;
-
-        let total = this.currentItem.basePrice;
-
-        // Contar e atualizar combo selecionado
-        const selectedCombo = document.querySelector('input[name="combo"]:checked');
-        let comboCount = 0;
-        if (selectedCombo && selectedCombo.value !== 'none') {
-            total += parseFloat(selectedCombo.dataset.price) || 0;
-            comboCount = 1;
-        }
-
-        // Atualizar contador de combo
-        const comboLimitEl = document.querySelector('#optionsModal .options-section:first-child .options-limit');
-        if (comboLimitEl) {
-            comboLimitEl.textContent = `Máximo: ${comboCount}/1`;
-        }
-
-        // Contar e somar adicionais selecionados
-        const adicionaisChecked = document.querySelectorAll('input[name="adicional"]:checked');
-        const adicionaisCount = adicionaisChecked.length;
-
-        adicionaisChecked.forEach(checkbox => {
-            total += parseFloat(checkbox.dataset.price) || 0;
-        });
-
-        // Atualizar contador de adicionais
-        const adicionaisLimitEl = document.querySelector('#optionsModal .options-section:nth-child(2) .options-limit');
-        if (adicionaisLimitEl) {
-            adicionaisLimitEl.textContent = `Máximo: ${adicionaisCount}/6`;
-        }
-
-        // Limitar adicionais a 6 - desabilitar os não selecionados se atingiu o limite
-        const allAdicionais = document.querySelectorAll('input[name="adicional"]');
-        allAdicionais.forEach(checkbox => {
-            if (!checkbox.checked && adicionaisCount >= 6) {
-                checkbox.disabled = true;
-                checkbox.closest('.option-item').style.opacity = '0.5';
-                checkbox.closest('.option-item').style.pointerEvents = 'none';
-            } else {
-                checkbox.disabled = false;
-                checkbox.closest('.option-item').style.opacity = '1';
-                checkbox.closest('.option-item').style.pointerEvents = 'auto';
-            }
-        });
-
-        // Somar maionese verde
-        const maioneseVerde = document.getElementById('maioneseVerde');
-        if (maioneseVerde && maioneseVerde.checked) {
-            total += parseFloat(maioneseVerde.dataset.price) || 0;
-        }
-
-        document.getElementById('optionsTotalPrice').textContent = this.formatPrice(total);
-    },
-
-    addItemWithOptions() {
-        if (!this.currentItem) return;
-
-        let itemName = this.currentItem.name;
-        let totalPrice = this.currentItem.basePrice;
-        const extras = [];
-
-        // Verificar combo
-        const selectedCombo = document.querySelector('input[name="combo"]:checked');
-        if (selectedCombo && selectedCombo.value !== 'none') {
-            const comboPrice = parseFloat(selectedCombo.dataset.price) || 0;
-            totalPrice += comboPrice;
-            const comboLabel = selectedCombo.closest('.option-item').querySelector('.option-name').textContent;
-            extras.push(comboLabel);
-        }
-
-        // Verificar adicionais
-        document.querySelectorAll('input[name="adicional"]:checked').forEach(checkbox => {
-            const adicionalPrice = parseFloat(checkbox.dataset.price) || 0;
-            totalPrice += adicionalPrice;
-            const adicionalLabel = checkbox.closest('.option-item').querySelector('.option-name').textContent;
-            extras.push(adicionalLabel);
-        });
-
-        // Verificar maionese verde
-        const maioneseVerde = document.getElementById('maioneseVerde');
-        if (maioneseVerde && maioneseVerde.checked) {
-            totalPrice += parseFloat(maioneseVerde.dataset.price) || 0;
-            extras.push('Maionese verde');
-        }
-
-        // Se tem extras, adiciona na descrição
-        if (extras.length > 0) {
-            itemName += ' (' + extras.join(', ') + ')';
-        }
-
-        // Verificar se é edição ou novo item
-        if (this.currentItem.isEditing && this.editingItemIndex !== undefined) {
-            // Atualizar item existente mantendo a quantidade
-            const oldQty = this.items[this.editingItemIndex].qty;
-            this.items[this.editingItemIndex] = { name: itemName, price: totalPrice, qty: oldQty };
-            this.showToast(`${this.currentItem.name} atualizado!`);
-            this.editingItemIndex = undefined;
-        } else {
-            // Adicionar novo item ao carrinho
-            this.items.push({ name: itemName, price: totalPrice, qty: 1 });
-            this.showToast(`${this.currentItem.name} adicionado ao carrinho!`);
-            this.animateCartCount();
-        }
-
-        this.saveToStorage();
-        this.updateUI();
-
-        // Fechar modal
-        this.closeOptionsModal();
-    },
-
-    bindOptionsEvents() {
-        // Fechar modal
-        document.getElementById('optionsClose').addEventListener('click', () => this.closeOptionsModal());
-        document.getElementById('optionsModal').addEventListener('click', (e) => {
-            if (e.target.id === 'optionsModal') this.closeOptionsModal();
-        });
-
-        // Atualizar total ao mudar seleções
-        document.querySelectorAll('#optionsModal input').forEach(input => {
-            input.addEventListener('change', () => this.updateOptionsTotal());
-        });
-
-        // Botão adicionar ao carrinho
-        document.getElementById('btnAddWithOptions').addEventListener('click', () => this.addItemWithOptions());
-
-        // Fechar com ESC
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                const optionsModal = document.getElementById('optionsModal');
-                if (optionsModal.classList.contains('active')) {
-                    this.closeOptionsModal();
-                }
-            }
         });
     },
 
@@ -979,124 +589,13 @@ const Cart = {
         this.updateUI();
     },
 
-    confirmRemoveItem(name) {
-        this.itemToRemove = name;
-        document.getElementById('confirmModal').classList.add('active');
-    },
-
-    closeConfirmModal() {
-        document.getElementById('confirmModal').classList.remove('active');
-        this.itemToRemove = null;
-    },
-
-    confirmRemove() {
-        if (this.itemToRemove) {
-            this.removeItem(this.itemToRemove);
-            this.showToast('Item removido do carrinho');
-        }
-        this.closeConfirmModal();
-    },
-
-    editItem(index) {
-        const item = this.items[index];
-        if (!item) return;
-
-        // Guardar referência do item sendo editado
-        this.editingItemIndex = index;
-
-        // Extrair nome base (sem os extras entre parênteses)
-        let baseName = item.name;
-        let extras = [];
-        const match = item.name.match(/^(.+?)\s*\((.+)\)$/);
-        if (match) {
-            baseName = match[1].trim();
-            extras = match[2].split(', ').map(e => e.trim().toLowerCase());
-        }
-
-        // Buscar preço base do item no cardápio
-        let basePrice = 0;
-        const menuCards = document.querySelectorAll('.menu-card');
-        menuCards.forEach(card => {
-            const cardTitle = card.querySelector('.card-title')?.textContent?.trim();
-            if (cardTitle === baseName) {
-                const priceText = card.querySelector('.card-price')?.textContent || '';
-                basePrice = this.parsePrice(priceText);
-            }
-        });
-
-        // Se não encontrou no cardápio, usar preço do item dividido pela quantidade
-        if (basePrice === 0) {
-            basePrice = item.price / item.qty;
-        }
-
-        // Abrir modal de opcionais
-        this.currentItem = { name: baseName, basePrice: basePrice, mode: 'full', isEditing: true };
-
-        // Atualizar header do modal
-        document.getElementById('optionsItemName').textContent = baseName;
-        document.getElementById('optionsItemPrice').textContent = this.formatPrice(basePrice);
-
-        // Resetar todas as seleções primeiro
-        document.querySelectorAll('#optionsModal input[type="radio"]').forEach(radio => {
-            radio.checked = radio.value === 'none';
-        });
-        document.querySelectorAll('#optionsModal input[type="checkbox"]').forEach(checkbox => {
-            checkbox.checked = false;
-            // Reativar checkboxes que podem ter sido desabilitados
-            checkbox.disabled = false;
-            checkbox.closest('.option-item').style.opacity = '1';
-            checkbox.closest('.option-item').style.pointerEvents = 'auto';
-        });
-
-        // Restaurar seleções dos extras
-        extras.forEach(extra => {
-            // Verificar combos - comparação exata
-            document.querySelectorAll('input[name="combo"]').forEach(radio => {
-                const optionName = radio.closest('.option-item')?.querySelector('.option-name')?.textContent?.trim().toLowerCase();
-                if (optionName && optionName === extra) {
-                    radio.checked = true;
-                }
-            });
-
-            // Verificar adicionais - comparação exata
-            document.querySelectorAll('input[name="adicional"]').forEach(checkbox => {
-                const optionName = checkbox.closest('.option-item')?.querySelector('.option-name')?.textContent?.trim().toLowerCase();
-                if (optionName && optionName === extra) {
-                    checkbox.checked = true;
-                }
-            });
-
-            // Verificar maionese verde
-            if (extra === 'maionese verde') {
-                const maioneseVerde = document.getElementById('maioneseVerde');
-                if (maioneseVerde) {
-                    maioneseVerde.checked = true;
-                }
-            }
-        });
-
-        // Mostrar todas as seções
-        const sections = document.querySelectorAll('#optionsModal .options-section');
-        sections.forEach(section => {
-            section.style.display = 'block';
-        });
-
-        // Atualizar total
-        this.updateOptionsTotal();
-
-        // Fechar carrinho e abrir modal de opcionais
-        this.closeModal();
-        document.getElementById('optionsModal').classList.add('active');
-        document.body.style.overflow = 'hidden';
-    },
-
     updateQty(name, delta) {
         const item = this.items.find(item => item.name === name);
         if (item) {
-            const newQty = item.qty + delta;
-            // Não permitir quantidade menor que 1
-            if (newQty >= 1) {
-                item.qty = newQty;
+            item.qty += delta;
+            if (item.qty <= 0) {
+                this.removeItem(name);
+            } else {
                 this.saveToStorage();
                 this.updateUI();
             }
@@ -1192,8 +691,8 @@ const Cart = {
             if (cartAddress) cartAddress.classList.add('show');
             if (cartPayment) cartPayment.classList.add('show');
 
-            cartItems.innerHTML = this.items.map((item, index) => `
-                <div class="cart-item" data-name="${item.name}" data-index="${index}">
+            cartItems.innerHTML = this.items.map(item => `
+                <div class="cart-item" data-name="${item.name}">
                     <div class="cart-item-info">
                         <div class="cart-item-name">${item.name}</div>
                         <div class="cart-item-price">${this.formatPrice(item.price * item.qty)}</div>
@@ -1203,17 +702,9 @@ const Cart = {
                         <span class="cart-item-qty">${item.qty}</span>
                         <button class="btn-plus" data-name="${item.name}">+</button>
                     </div>
-                    <div class="cart-item-actions">
-                        <button class="cart-item-edit" data-index="${index}" title="Editar">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                            </svg>
-                        </button>
-                        <button class="cart-item-remove" data-name="${item.name}" title="Remover">
-                            &times;
-                        </button>
-                    </div>
+                    <button class="cart-item-remove" data-name="${item.name}" title="Remover">
+                        &times;
+                    </button>
                 </div>
             `).join('');
 
@@ -1226,12 +717,8 @@ const Cart = {
                 btn.addEventListener('click', () => this.updateQty(btn.dataset.name, 1));
             });
 
-            cartItems.querySelectorAll('.cart-item-edit').forEach(btn => {
-                btn.addEventListener('click', () => this.editItem(parseInt(btn.dataset.index)));
-            });
-
             cartItems.querySelectorAll('.cart-item-remove').forEach(btn => {
-                btn.addEventListener('click', () => this.confirmRemoveItem(btn.dataset.name));
+                btn.addEventListener('click', () => this.removeItem(btn.dataset.name));
             });
 
             // Atualizar valores
